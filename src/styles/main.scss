@@ -1,4 +1,15 @@
-@import "variables.scss"
+@import url('https://fonts.googleapis.com/css2?family=Play&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Expletus+Sans:wght@700&display=swap');
+@import 'variables.scss';
 
+
+// Button standard
+.btn {
+    border: 0px;
+    font-family: $primary;
+    font-size: 2em;
+    padding: 1em;
+    margin: 0;
+  }
 
 
