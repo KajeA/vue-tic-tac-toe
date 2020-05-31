@@ -1,6 +1,6 @@
 # tic-tac-toe
 
-> A Vue.js project
+Made with Vue.js and Sass following The Odin Project curriculum. 
 
 ## Build Setup
 
