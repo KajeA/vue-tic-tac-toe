@@ -1,8 +1,10 @@
 <template>
   <div id='app'>
-    <p>
-      Testing
-    </p>
+    <div id="details">
+      <h1>Tic Tac Toe</h1>
+    </div>
+
+    <grid></grid>
   </div>
 </template>
 
@@ -11,7 +13,11 @@ export default {
   name: 'app',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      matches: 0,
+      wins: {
+        O: 0,
+        X: 0
+      }
     }
   }
 }
