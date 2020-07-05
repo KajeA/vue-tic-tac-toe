@@ -79,9 +79,14 @@
 				this.gameStatusMessage = 'Draw!'
 
 				return
-			} 
-				
-		}
+			} 		
+		},
+
+		// gameType () {
+		// 	if (this.gameType === 'solo') {
+		// 		// enable computer player
+		// 	}
+		// }
 	},
 
 	methods: {

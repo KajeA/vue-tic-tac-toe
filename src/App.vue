@@ -8,12 +8,13 @@
 
     <div id='app'>
       <div id="details">
-        <h3>Match #{{ matches + 1 }}</h3>
+        <h3>{{gameType}} Match #{{ matches + 1 }}</h3> 
       </div>
 
       <board></board>
 
       <button class="restart btn" @click="restart">Restart</button>
+      <!-- <button class="type btn" @click="changeGameType">Change Mode</button> -->
     </div>
   </div>
 </template>
@@ -26,6 +27,7 @@ export default {
   name: 'app',
   data () {
     return {
+      gameType: 'Double',
       matches: 0,
       wins: {
         O: 0,
@@ -41,6 +43,19 @@ export default {
       Event.$emit('boardReset')
 
       this.matches++
+    },
+
+    changeGameType () {
+      if (this.gameType == 'Double') {
+        this.gameType == 'Solo'
+        
+        return
+
+      } else if (this.gameType == 'Solo') {
+        this.gameType == 'Double'
+
+        return
+      }
     }
   },
 
@@ -79,6 +94,7 @@ export default {
     @extend .btn;
     &:hover {
       color: $secondary;
+      background-color: $tertiary;
     }
   }
 
