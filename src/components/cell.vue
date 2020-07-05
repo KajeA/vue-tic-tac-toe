@@ -44,7 +44,7 @@
 .cell {
   width: 33.333%;
   height: 4em;
-  border: 0.5em solid $primary;
+  border: 3px solid $border;
   font-size: 3em;
   font-family: $font-secondary;
   &:hover {
@@ -55,19 +55,19 @@
       display: block;
   }
   &:first-of-type {
-      border-left-color: transparent;
-      border-top-color: transparent;
+      border-left-color: $border;
+      border-top-color: $border;
   }
   &:nth-of-type(2) {
-      border-top-color: transparent;
+      border-top-color: $border;
   }
   &:nth-of-type(3) {
-      border-right-color: transparent;
-      border-top-color: transparent;
+      border-right-color: $border;
+      border-top-color: $border;
   }
 }
 
 tr:nth-of-type(3) .cell {
-  border-bottom-color: transparent;
+  border-bottom-color: $border;
 }
 </style>

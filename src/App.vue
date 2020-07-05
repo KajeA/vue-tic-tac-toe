@@ -1,15 +1,14 @@
 <template>
   <div>
     <div class="scoreBoard">
-      <span>O has {{ wins.O }} wins</span>
+      <h1>Tic Tac Toe</h1>
       <h2>Score Board</h2>
-      <span>X has {{ wins.X }} wins</span>
+      <span>O has {{ wins.O }} wins ~~~ </span> <span>X has {{ wins.X }} wins</span>
     </div>
 
     <div id='app'>
       <div id="details">
-        <h1>Tic Tac Toe</h1>
-        <h2>Match #{{ matches + 1 }}</h2>
+        <h3>Match #{{ matches + 1 }}</h3>
       </div>
 
       <board></board>
@@ -70,14 +69,13 @@ export default {
   }
 
 
-
   // Buttons
 
   .restart.btn {
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     background-color: $secondary;
-    color: $primary;
+    color: $tertiary;
     @extend .btn;
     &:hover {
       color: $secondary;
@@ -106,5 +104,4 @@ export default {
         margin-left: 2em;
       }
   }
-
 </style>

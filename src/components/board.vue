@@ -37,7 +37,7 @@
 
 				gameStatus: 'turn',
 
-				gameStatusMessage: `O's turn`,
+				gameStatusMessage:  `O's Turn`,
 
 				gameStatusColour: 'statusTurn',
 
@@ -81,13 +81,16 @@
 				return
 			} 
 				
-			this.gameStatusMessage = `${this.activePlayer}'s turn`
 		}
 	},
 
 	methods: {
 		changePlayer () {
 			this.activePlayer = this.nonActivePlayer
+
+			if (this.gameStatus === 'turn') {
+				this.gameStatusMessage = `${this.activePlayer}'s turn`
+			}
 		},
 
 		checkForWin () {
@@ -105,7 +108,7 @@
 		},
 
 		gameIsWon () {
-			Event.$emit('win', this.ActivePlayer)
+			Event.$emit('win', this.activePlayer)
 
 				this.gameStatusMessage = `${this.activePlayer} Wins!`
 
@@ -164,7 +167,8 @@
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   background-color: $secondary;
-  color: $primary;
+  color: $tertiary;
+  font-size: 2rem;
 }
 
 .statusTurn {
