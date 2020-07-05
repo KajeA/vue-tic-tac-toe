@@ -25,9 +25,11 @@
 </template>
 
 <script>
-	import Cell from './cell.vue'
-  export default {
-		components: { Cell },
+	import cell from './cell.vue'
+	import '../styles/main.scss'
+	
+	export default {
+		components: { cell },
 
 		data () {
 			return {
@@ -44,80 +46,16 @@
 				cells : {
 					1: '', 2: '', 3: '',
 					4: '', 5: '', 6: '',
-					7: '', 8: '', 9: '', 
+					7: '', 8: '', 9: '' 
 				},
 
 				winConditions: [
 					[1, 2, 3], [4, 5, 6], [7, 8, 9],
 					[1, 4, 7], [2, 5, 8], [3, 6, 9],
-					[1, 5, 9], [3, 5, 7], 
+					[1, 5, 9], [3, 5, 7]
 				],
 			}
 		},
-
-	methods: {
-		created () {
-			Event.$on('strike', (cellNumber) => {
-				this.cells[callNUmber] = this.activePlayer
-
-				this.movesTaken++
-
-				this.gameStatus = this.changeGameStatus()
-
-				this.changePlayer()
-			})
-			Event.$on('gridReset', () => {
-				Object.assign(this.$data, this.$options.data())
-			})
-		},
-
-		changePlayer () {
-			this.activePlayer = this.nonActivePlayer
-		},
-
-		changeGameStatus () {
-			if (this.checkForWin()) {
-				return this.gameIsWon()
-			} else if (this.moves === 9) {
-				return 'draw'
-			}
-			return 'turn'
-		},
-
-		checkForWin () {
-			for (let i = 0; i < this.winConditions.length; i++) {
-				let wc = this.winConditions[i]
-				let cells = this.cells
-
-				// checks value in cell and win conditions
-				if (this.areEqual(cells[wc[0]], cells[wc[1]], cells[wc[2]])) {
-					return true
-				}
-			}
-
-			return false
-		},
-
-		areEqual () {
-			var length = arguments.length;
-
-			for (var i = 1; i < len; i++){
-				if (arguments[i] === '' || arguments[i] !== arguments[i-1])
-					return false;
-			}
-			return true;
-		},
-
-		gameIsWon () {
-			Event.$emit('win', this.ActivePlayer)
-
-				this.gameStatusMessage = `${this.activePlayer} Wins!`
-
-				Event.$emit('freeze')
-
-			return 'win'
-		}
-	},
 
 	computed: {
 		nonActivePlayer () {
@@ -134,8 +72,6 @@
 			if (this.gameStatus === 'win') {
 				this.gameStatusColour = 'statusWin'
 
-				this.gameStatusMessage = `${this.activePlayer} Wins!`
-
 				return
 			} else if (this.gameStatus === 'draw') {
 				this.gameStatusColour = 'statusDraw'
@@ -144,15 +80,79 @@
 
 				return
 			} 
-				this.gameStatusMessage = `${this.activePlayer}'s turn`
+				
+			this.gameStatusMessage = `${this.activePlayer}'s turn`
 		}
 	},
 
+	methods: {
+		changePlayer () {
+			this.activePlayer = this.nonActivePlayer
+		},
+
+		checkForWin () {
+			for (let i = 0; i < this.winConditions.length; i++) {
+				let wc = this.winConditions[i]
+				let cells = this.cells
+
+				// checks value in cell and win conditions
+				if (this.areEqual(cells[wc[0]], cells[wc[1]], cells[wc[2]])) {
+					return true
+				}
+			}
+
+			return false
+		},
+
+		gameIsWon () {
+			Event.$emit('win', this.ActivePlayer)
+
+				this.gameStatusMessage = `${this.activePlayer} Wins!`
+
+				Event.$emit('freeze')
+
+			return 'win'
+		},
+
+		changeGameStatus () {
+			if (this.checkForWin()) {
+				return this.gameIsWon()
+			} else if (this.movesTaken === 9) {
+				return 'draw'
+			}
+			return 'turn'
+		},
+
+		areEqual () {
+			var length = arguments.length;
+
+			for (var i = 1; i < length; i++){
+				if (arguments[i] === '' || arguments[i] !== arguments[i-1])
+					return false;
+			}
+			return true;
+		},
+	},
+
+	created () {
+		Event.$on('strike', (cellNumber) => {
+			this.cells[cellNumber] = this.activePlayer
+
+			this.movesTaken++
+
+			this.gameStatus = this.changeGameStatus()
+
+			this.changePlayer()
+		})
+		Event.$on('boardReset', () => {
+			Object.assign(this.$data, this.$options.data())
+		})
+	},
   }
 </script>
 
 <style lang='scss'>
-@import './styles/main.scss';
+@import '../styles/_variables.scss';
 
 .grid {
   background-color: $primary;

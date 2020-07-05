@@ -3,6 +3,8 @@
 </template>
 
 <script>
+  import '../styles/main.scss'
+
   export default {
 		props: ['name'],
     data () {
@@ -21,22 +23,23 @@
 
 					Event.$emit('strike', this.name) // notifies board that mark is placed
 				}
-      },
-      
-      created () {
-        Event.$on('freeze', () => this.frozen = true)
-
-        Event.$on('clearCell', () => {
-          this.mark = ''
-
-          this.frozen = false
-        })
       }
-		}
+    },
+    
+    created () {
+      Event.$on('clearCell', () => {
+        this.mark = ''
+
+        this.frozen = false
+      })
+
+      Event.$on('freeze', () => this.frozen = true)
+    }
   }
 </script>
 
 <style lang="scss">
+@import '../styles/_variables.scss';
 
 .cell {
   width: 33.333%;
